@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shapes", "shapes\shapes.csproj", "{875A2F93-0800-4ABB-8295-703116CA0C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes", "shapes\Shapes.csproj", "{875A2F93-0800-4ABB-8295-703116CA0C70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shapes.test", "shapes.test\shapes.test.csproj", "{F5DAC371-5401-4A07-9E79-CA028477A818}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes.Test", "shapes.test\Shapes.Test.csproj", "{F5DAC371-5401-4A07-9E79-CA028477A818}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
