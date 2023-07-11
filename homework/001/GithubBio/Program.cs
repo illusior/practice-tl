@@ -21,13 +21,16 @@ var httpRequest = new HttpRequestMessage
 
 string githubUsername = "";
 
+Console.WriteLine("This program outputs user github profile's public info by given username");
+Console.WriteLine();
+
 HttpResponseMessage response = new();
 bool isStatusOk = false;
 do
 {
     Console.Write("Github profile username: ");
-    githubUsername = Console.ReadLine();
-    httpClient.BaseAddress = MakeGithubUserInfoApiUri(githubUsername!);
+    githubUsername = Console.ReadLine() ?? "";
+    httpClient.BaseAddress = MakeGithubUserInfoApiUri(githubUsername);
     try
     {
         response = httpClient.Send(httpRequest);
@@ -35,20 +38,21 @@ do
     catch (Exception)
     {
         Console.WriteLine($"Something went wrong while sending HTTP request to {HTTP_GITHUB_USER_BASE_ADDRES}");
-        continue;
+        break;
     }
 
     isStatusOk = response.StatusCode == System.Net.HttpStatusCode.OK;
     if (!isStatusOk)
     {
         Console.WriteLine("No such user");
-        continue;
+        break;
     }
 
     Console.WriteLine();
 
     var responseJson = await response.Content.ReadFromJsonAsync(typeof(GithubUser)) as GithubUser;
     Console.WriteLine($@"
+    #------------------------------------------------------------#
     User info:
         --[  name            ]-- {responseJson.name ?? "Unknown"} \
         --[  email           ]-- {responseJson.email ?? "Unknown"} \
@@ -62,6 +66,7 @@ do
         --[  login           ]-- {responseJson.login ?? "Unknown"} \
         --[  repos_count     ]-- {responseJson.public_repos ?? 0} \
         --[  twitter         ]-- {responseJson.twitter_username ?? "Unknown"} \
+    #------------------------------------------------------------#
     ");
 } while (!isStatusOk);
 
