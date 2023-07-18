@@ -1,0 +1,28 @@
+﻿.footer {
+    bottom: 2rem;
+    left: 0;
+    line-height: 60px;
+    min-width: 100%;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.footer * {
+    max-width: fit-content;
+}
+
+.links {
+    display: flex;
+}
+
+a {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.text {
+    font-size: .75rem;
+    font-weight: 900;
+    line-height: 1rem;
+    place-self: end;
+}

@@ -1,0 +1,19 @@
+﻿.logo {
+    align-items: center;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.text--colored {
+    color: var(--sub-color);
+}
+
+svg {
+    max-height: 3rem;
+    max-width: 3rem;
+}
+
+svg path {
+    fill: var(--main-color);
+}

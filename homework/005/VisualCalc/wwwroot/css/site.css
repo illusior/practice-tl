@@ -1,0 +1,61 @@
+*, body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    min-height: 90vh;
+    padding: 2rem;
+}
+
+body > div.container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    min-width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-block-end: unset;
+    margin-block-start: unset;
+    margin-top: -0.2em;
+    position: relative;
+    transition: color .25s;
+}
+
+.textButton {
+    align-items: baseline;
+    display: grid;
+    gap: 0.25rem;
+    grid-auto-flow: column;
+    width: max-content;
+}

@@ -1,0 +1,16 @@
+﻿.container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 100%;
+    justify-content: center;
+}
+
+.text {
+    font-weight: 900;
+}
+
+.text::after {
+    content: 'progress...';
+    color: var(--sub-color);
+}
