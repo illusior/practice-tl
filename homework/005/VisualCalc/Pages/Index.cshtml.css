@@ -1,4 +1,4 @@
-﻿.rus--glow {
+﻿.text--glow {
     animation: rainbow linear 50s infinite;
     background: linear-gradient(
         var(--bs-blue),
