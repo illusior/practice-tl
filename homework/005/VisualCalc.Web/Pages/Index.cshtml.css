@@ -1,4 +1,30 @@
-﻿.container {
+﻿.text--glow {
+    animation: rainbow linear 50s infinite;
+    background: linear-gradient(
+        var(--bs-blue),
+        var(--bs-indigo),
+        var(--bs-purple),
+        var(--bs-pink),
+        var(--bs-red),
+        var(--bs-orange),
+        var(--bs-yellow),
+        var(--bs-green),
+        var(--bs-teal),
+        var(--bs-cyan)
+    );
+    color: transparent;
+    font-weight: 900;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 0.007em #222;
+}
+
+@keyframes rainbow {
+    100% {
+        background-position: 0 30em;
+    }
+}
+
+.container {
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
@@ -8,9 +34,6 @@
 
 .text {
     font-weight: 900;
-}
-
-.text::after {
 }
 
 .text--animated {
@@ -33,9 +56,11 @@
     0% {
         left: 0;
     }
+
     50% {
         left: 100%;
     }
+
     100% {
         left: 0;
     }

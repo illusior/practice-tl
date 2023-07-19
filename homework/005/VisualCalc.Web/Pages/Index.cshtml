@@ -1,11 +1,12 @@
 ﻿@page
-@model Calculator.CalculatorSubmitPageModel
+@model IndexModel
 @{
     ViewData["Title"] = "";
 }
 
 <div class="text text-center">
-    <h1 class="display-6">calculate
+    <h1 class="display-6">
+        calculate
         <strong>+</strong>,
         <strong>-</strong>,
         <strong>*</strong>,
@@ -15,4 +16,7 @@
     <h2 class="text--glow">visualization</h2>
 </div>
 
-<partial name="Calculator/CalculatorSubmit" />
+<div class="container text">
+    <strong class="mx-2">Work in</strong>
+    <strong class="text--animated">progress...</strong>
+</div>

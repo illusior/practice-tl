@@ -28,13 +28,12 @@ body {
     padding: 2rem;
 }
 
-body > div.container {
-    flex: 1;
-
-    display: flex;
-    justify-content: center;
-    min-width: 100%;
-}
+    body > div.container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+    }
 
 main {
     display: flex;
