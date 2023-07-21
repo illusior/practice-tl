@@ -1,0 +1,123 @@
+﻿@using VisualCalc.Models
+@using VisualCalc.UI.Components.Calculator.Visualization
+
+@if (!_calculatorSubmitModel.HasPosted)
+{
+    <form class="row" action="/" method="post">
+        <div class="col p-2 flex--3">
+            <input aria-label="First operand"
+                   class="form-input p-3"
+                   inputmode="numeric"
+                   placeholder="@_calculatorSubmitModel.FirstOp"
+                   type="number"
+                   max="@_calculatorSubmitModel.Max"
+                   min="@_calculatorSubmitModel.Min"
+            @oninput="OnFirstOpInput" />
+        </div>
+
+        <div class="col p-2 flex--center">
+            <div class="operation--container">
+                <input type="radio"
+                       name="operation"
+                       id="+"
+                       value="@CalculateAction.Plus"
+                @onchange="OnCalcActionSelect" />
+                <label class="btn
+                              sized
+                              mx-1
+                              @(_calculatorSubmitModel.Action == CalculateAction.Plus
+                                    ? "checked"
+                                    : string.Empty)"
+                       for="+"
+                       tabindex="0">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="mx-1">
+                        <path stroke="null" id="svg_1" fill="#0F0F0F" d="m0.147541,12c0,-2.181998 1.768782,-3.95082 3.95082,-3.95082l3.95082,0l0,-3.95082c0,-2.181959 1.768782,-3.95082 3.95082,-3.95082c2.182038,0 3.95082,1.768861 3.95082,3.95082l0,3.95082l3.95082,0c2.182038,0 3.95082,1.768821 3.95082,3.95082c0,2.181998 -1.768782,3.95082 -3.95082,3.95082l-3.95082,0l0,3.95082c0,2.181959 -1.768782,3.95082 -3.95082,3.95082c-2.182038,0 -3.95082,-1.768861 -3.95082,-3.95082l0,-3.95082l-3.95082,0c-2.182038,0 -3.95082,-1.768821 -3.95082,-3.95082z" />
+                    </svg>
+                </label>
+
+                <input type="radio"
+                       name="operation"
+                       id="-"
+                       value="@CalculateAction.Minus"
+                @onchange="OnCalcActionSelect" />
+                <label class="btn
+                              sized
+                              mx-1
+                              @(_calculatorSubmitModel.Action == CalculateAction.Minus
+                                    ? "checked"
+                                    : string.Empty)"
+                       for="-"
+                       tabindex="0">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="mx-1">
+                        <path stroke="null" id="svg_4" fill="#0F0F0F" d="m4.18668,8.09334c-2.15757,0 -3.90666,1.74905 -3.90666,3.90666c0,2.15761 1.74909,3.90666 3.90666,3.90666l15.62664,0c2.15757,0 3.90666,-1.74905 3.90666,-3.90666c0,-2.15761 -1.74909,-3.90666 -3.90666,-3.90666l-15.62664,0z" />
+                    </svg>
+                </label>
+            </div>
+
+            <button type="button" class="btn m-4" @onclick="OnSubmit">try it!</button>
+
+            <div class="operation--container">
+                <input type="radio"
+                       name="operation"
+                       id="*"
+                       value="@CalculateAction.Multiplication"
+                @onchange="OnCalcActionSelect" />
+                <label class="btn
+                              sized
+                              mx-1
+                              @(_calculatorSubmitModel.Action == CalculateAction.Multiplication
+                                    ? "checked"
+                                    : string.Empty)"
+                       for="*"
+                       tabindex="0">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="mx-1">
+                        <path stroke="null" id="svg_5" fill="#0F0F0F" d="m7.400394,1.379892c-1.665667,-1.665582 -4.366297,-1.665582 -6.031964,0c-1.665667,1.665582 -1.665667,4.36634 0,6.031922l4.584678,4.584721l-4.616838,4.61671c-1.665709,1.665582 -1.665709,4.36634 0,6.031922c1.665667,1.666008 4.366255,1.666008 6.031964,0l4.616881,-4.61671l4.646653,4.646567c1.665667,1.665582 4.366297,1.665582 6.031964,0c1.665709,-1.665582 1.665709,-4.36634 0,-6.031922l-4.646653,-4.646567l4.639359,-4.639316c1.665667,-1.665582 1.665667,-4.36634 0,-6.031922c-1.665709,-1.666008 -4.366297,-1.666008 -6.032007,0l-4.639316,4.639316l-4.584721,-4.584721z" />
+                    </svg>
+                </label>
+
+                <input type="radio"
+                       name="operation"
+                       id="/"
+                       value="@CalculateAction.Division"
+                @onchange="OnCalcActionSelect" />
+                <label class="btn
+                              sized
+                              mx-1
+                              @(_calculatorSubmitModel.Action == CalculateAction.Division
+                                    ? "checked"
+                                    : string.Empty)"
+                       for="/"
+                       tabindex="0">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="mx-1">
+                        <path stroke="null" id="svg_2" fill="#0F0F0F" d="m0.200024,12c0,-2.172376 1.76095,-3.933325 3.933325,-3.933325l15.733301,0c2.172376,0 3.933325,1.76095 3.933325,3.933325c0,2.172376 -1.76095,3.933325 -3.933325,3.933325l-15.733301,0c-2.172376,0 -3.933325,-1.76095 -3.933325,-3.933325z" />
+                        <path stroke="null" id="svg_3" fill="#0F0F0F" d="m10,1c-0.5523,0 -1,1.307282 -1,2.919995c0,1.612713 0.4477,2.919995 1,2.919995l4,0c0.5523,0 1,-1.307282 1,-2.919995c0,-1.612713 -0.4477,-2.919995 -1,-2.919995l-4,0z" />
+                        <path stroke="null" id="svg_8" fill="#0F0F0F" d="m10,17.000001c-0.5523,0 -1,1.307281 -1,2.919995c0,1.612713 0.4477,2.919994 1,2.919994l4,0c0.5523,0 1,-1.307281 1,-2.919994c0,-1.612714 -0.4477,-2.919995 -1,-2.919995l-4,0z" />
+                    </svg>
+                </label>
+            </div>
+        </div>
+
+        <div class="col p-2 flex--3">
+            <input aria-label="Second operand"
+                   class="form-input p-3"
+                   inputmode="numeric"
+                   placeholder="@_calculatorSubmitModel.SecondOp"
+                   type="number"
+                   max="@_calculatorSubmitModel.Max"
+                   min="@_calculatorSubmitModel.Min"
+            @oninput="OnSecondOpInput" />
+        </div>
+    </form>
+
+    @if (HasEverPosted())
+    {
+        <button @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">To visual</button>
+    }
+}
+else
+{
+    <button @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">To input</button>
+    <OperationInColumns FirstOp="@_calculatorSubmitModel.FirstOp"
+                        SecondOp="@_calculatorSubmitModel.SecondOp"
+                        CalcAction="@_calculatorSubmitModel.Action" />
+}

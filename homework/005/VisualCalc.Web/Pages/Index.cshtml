@@ -1,4 +1,6 @@
 ﻿@page
+@using VisualCalc.UI.Components.Calculator.InputForm
+@using VisualCalc.UI.Components.Text
 @model IndexModel
 @{
     ViewData["Title"] = "";
@@ -6,17 +8,19 @@
 
 <div class="text text-center">
     <h1 class="display-6">
-        calculate
-        <strong>+</strong>,
-        <strong>-</strong>,
-        <strong>*</strong>,
-        <strong>/</strong>
+        do
+        <strong>
+            +
+            -
+            *
+            /
+        </strong>
         with
     </h1>
     <h2 class="text--glow">visualization</h2>
 </div>
 
-<div class="container text">
-    <strong class="mx-2">Work in</strong>
-    <strong class="text--animated">progress...</strong>
+<div class="container-fluid container-flex">
+    <!--TODO: why rerender twice with ServerPrerendered?-->
+    <component type="typeof(CalcInputForm)" render-mode="Server" />
 </div>

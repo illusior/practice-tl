@@ -1,0 +1,41 @@
+﻿.container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 100%;
+    justify-content: center;
+}
+
+.text {
+    font-weight: 900;
+}
+
+.text--animated {
+    color: var(--sub-color);
+    position: relative;
+}
+
+.text--animated::after {
+    background: var(--bg-color);
+    border-left: 2px solid var(--caret-color);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    animation: typing 3.5s ease-in-out infinite;
+}
+
+@keyframes typing {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}

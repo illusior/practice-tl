@@ -1,0 +1,126 @@
+﻿form {
+    min-width: 100%;
+}
+
+.col {
+    display: flex;
+}
+
+.form-input {
+    background-color: var(--sub-alt-color);
+    border: none;
+    border: none;
+    border-radius: 0.5rem;
+    caret-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 1000%;
+    text-align: center;
+    outline: none;
+    width: 100%;
+}
+
+.form-input:invalid {
+    content: "only digits";
+    color: red;
+}
+
+.btn {
+    background: var(--sub-alt-color);
+    color: var(--text-color);
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    outline: none;
+}
+
+.btn:active,
+input[type="radio"]:checked + .btn,
+.checked {
+    background: var(--sub-color);
+    color: var(--bg-color);
+}
+
+.btn:focus,
+input[type="radio"]:checked + .btn,
+.checked {
+    box-shadow: 0 0 0 0.15em var(--text-color);
+}
+
+.flex--3 {
+    flex: 3;
+}
+
+.flex--center {
+    align-items: center;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 40vh;
+}
+
+.operation--container {
+    align-items: center;
+    flex: 3;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    align-items: center;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sized {
+    --size: 4.5rem;
+
+    height: var(--size);
+    width: var(--size);
+}
+
+label:focus {
+    background: var(--text-color);
+    box-shadow: 0 0 0 0.15em var(--text-color);
+}
+
+svg {
+    background: transparent;
+    max-height: 3rem;
+    max-width: 3rem;
+}
+
+svg path {
+    fill: var(--text-color)
+}
+
+.btn:focus path,
+.btn:hover path,
+input[type="radio"]:checked + .btn path {
+    fill: var(--bg-color);
+}
+
+@media (max-width: 768px) {
+    form {
+        flex-direction: column;
+    }
+
+    .operation--container {
+        justify-content: space-evenly;
+    }
+
+    .flex--center {
+        max-width: 40vw;
+    }
+}

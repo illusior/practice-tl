@@ -1,4 +1,5 @@
-﻿.logo {
+﻿.logo,
+.logo--text {
     align-items: center;
     display: flex;
     margin: 0;
