@@ -1,3 +1,35 @@
-﻿<h1>First op: @FirstOp</h1>
-<h1>Second op: @SecondOp</h1>
-<h1>Operation: @CalcAction.ToString()</h1>
+﻿@using VisualCalc.Models.Calculator
+@using VisualCalc.Models.Calculator.Visualization
+
+@using VisualCalc.UI.Components.Calculator.Digit
+
+<div class="result--expression--container">
+    <h1>
+        @FirstOp
+        @CalculateActionHelpers.CalculateActionToString(CalcAction)
+        @SecondOp = @CalculateActionHelpers.CalculateActionToLong(CalcAction, FirstOp, SecondOp)
+    </h1>
+</div>
+
+<div class="row digits--container">
+
+    @switch (CalcAction)
+    {
+        case CalculateAction.Plus:
+        case CalculateAction.Minus:
+            @foreach (var rowOfDigits in ColumnCalculationModel.FieldOfRowDigits)
+            {
+                <div class="row digits">
+                    <Digit RowOfDigits="@rowOfDigits"></Digit>
+                </div>
+            }
+            break;
+        case CalculateAction.Multiplication:
+        case CalculateAction.Division:
+            break;
+        case CalculateAction.Unknown:
+        default:
+            throw new NotImplementedException();
+    }
+
+</div>

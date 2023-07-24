@@ -40,7 +40,8 @@
 
 .btn:active,
 input[type="radio"]:checked + .btn,
-.checked {
+.checked,
+.btn--toggle--form:active {
     background: var(--sub-color);
     color: var(--bg-color);
 }
@@ -61,7 +62,6 @@ input[type="radio"]:checked + .btn,
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-height: 40vh;
 }
 
 .operation--container {
@@ -123,4 +123,15 @@ input[type="radio"]:checked + .btn path {
     .flex--center {
         max-width: 40vw;
     }
+}
+
+.btn--toggle--form {
+    background-color: var(--error-color);
+    color: var(--colorful-error-extra-color);
+    font-size: 1rem;
+    max-height: 10vh;
+}
+
+.rounded {
+    border-radius: 100%;
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using VisualCalc.Models;
+using VisualCalc.Models.Calculator;
+using VisualCalc.Models.Calculator.Visualization;
 
 namespace VisualCalc.UI.Components.Calculator.Visualization
 {
@@ -12,5 +13,18 @@ namespace VisualCalc.UI.Components.Calculator.Visualization
         public DataT SecondOp { get; set; }
         [Parameter]
         public CalculateAction CalcAction { get; set; }
+
+        private ColumnCalculationModel<DataT>? _columnCalculationModel;
+        public ColumnCalculationModel<DataT> ColumnCalculationModel
+        {
+            get => _columnCalculationModel!;
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            _columnCalculationModel = new(FirstOp, SecondOp, CalcAction);
+        }
     }
 }

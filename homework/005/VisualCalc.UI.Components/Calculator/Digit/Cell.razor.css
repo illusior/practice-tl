@@ -1,0 +1,6 @@
+﻿.cell {
+    align-items: center;
+    background-color: var(--sub-alt-color);
+    display: flex;
+    margin: 0;
+}

@@ -1,0 +1,44 @@
+﻿@using VisualCalc.Models.Calculator.Visualization
+
+@if (RowOfDigits != null && !RowOfDigits.All(digit => digit == null))
+{
+    @foreach (var digit in RowOfDigits)
+    {
+        <div class="digit col border--own">
+            <Cell Symbol="@(digit == null ||
+                            (digit.Symbol.GetSymbol().Count() == 0)
+                                ? null
+                                : digit.Symbol.GetSymbol())">
+            </Cell>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public List<DigitCell?>? RowOfDigits { get; set; }
+
+    private string GetBorderStyles(DigitCell cell)
+    {
+        string result = "";
+
+        if (cell.Borders.BordersSet.Contains(BorderSide.Left))
+        {
+            result += "border-start ";
+        }
+        if (cell.Borders.BordersSet.Contains(BorderSide.Up))
+        {
+            result += "border-top ";
+        }
+        if (cell.Borders.BordersSet.Contains(BorderSide.Right))
+        {
+            result += "border-end ";
+        }
+        if (cell.Borders.BordersSet.Contains(BorderSide.Bottom))
+        {
+            result += "border-bottom";
+        }
+
+        return result;
+    }
+}

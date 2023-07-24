@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using VisualCalc.Models;
+using VisualCalc.Models.Calculator;
 
 namespace VisualCalc.UI.Components.Calculator.InputForm
 {
@@ -11,20 +11,12 @@ namespace VisualCalc.UI.Components.Calculator.InputForm
         private void OnFirstOpInput(ChangeEventArgs e)
         {
             if (e.Value == null) return;
-            if (_calculatorSubmitModel.IsDefault())
-            {
-                _calculatorSubmitModel.ToggleDefaultValues();
-            }
             _calculatorSubmitModel.FirstOp = ParseInput(e.Value.ToString());
         }
 
         private void OnSecondOpInput(ChangeEventArgs e)
         {
             if (e.Value == null) return;
-            if (_calculatorSubmitModel.IsDefault())
-            {
-                _calculatorSubmitModel.ToggleDefaultValues();
-            }
             _calculatorSubmitModel.SecondOp = ParseInput(e.Value.ToString());
         }
 
@@ -44,11 +36,6 @@ namespace VisualCalc.UI.Components.Calculator.InputForm
             {
                 _hasEverPosted = true;
             }
-            Console.WriteLine($@"
-                FirstOp: {_calculatorSubmitModel.FirstOp}
-                SecondOp: {_calculatorSubmitModel.SecondOp}
-                Action: {_calculatorSubmitModel.Action}
-            ");
         }
 
         private bool HasEverPosted()
@@ -58,10 +45,15 @@ namespace VisualCalc.UI.Components.Calculator.InputForm
 
         private static long ParseInput(string? value)
         {
-            value = value ?? "0";
-            long result = 0;
-            long.TryParse(value, out result);
+            value ??= "0";
+            _ = long.TryParse(value, out long result);
             return result;
+        }
+
+        private void SwapArguments()
+        {
+            (_calculatorSubmitModel.FirstOp, _calculatorSubmitModel.SecondOp) =
+                (_calculatorSubmitModel.SecondOp, _calculatorSubmitModel.FirstOp);
         }
     }
 }

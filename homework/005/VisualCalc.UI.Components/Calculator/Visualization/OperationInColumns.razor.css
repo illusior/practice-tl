@@ -1,2 +1,14 @@
-﻿body {
+﻿.result--expression--container {
+    display: flex;
+    justify-content: center;
+}
+
+.digits--container {
+    max-width: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.digits {
+    justify-content: center;
 }

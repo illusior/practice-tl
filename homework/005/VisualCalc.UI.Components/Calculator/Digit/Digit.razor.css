@@ -1,0 +1,13 @@
+﻿.digit {
+    display: flex;
+    justify-content: center;
+    max-width: 3rem;
+}
+
+.digit {
+    background-color: var(--sub-alt-color);
+}
+
+.border--own {
+    border: 1px solid var(--sub-color);
+}

@@ -1,4 +1,5 @@
-﻿@using VisualCalc.Models
+﻿@using VisualCalc.Models;
+@using VisualCalc.Models.Calculator
 @using VisualCalc.UI.Components.Calculator.Visualization
 
 @if (!_calculatorSubmitModel.HasPosted)
@@ -16,6 +17,15 @@
         </div>
 
         <div class="col p-2 flex--center">
+            @if (HasEverPosted())
+            {
+                <button class="btn mb-4 btn--toggle--form"
+                        type="button"
+                @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">
+                    Back to visualization
+                </button>
+            }
+
             <div class="operation--container">
                 <input type="radio"
                        name="operation"
@@ -61,10 +71,12 @@
                        name="operation"
                        id="*"
                        value="@CalculateAction.Multiplication"
+                       disabled
                 @onchange="OnCalcActionSelect" />
                 <label class="btn
                               sized
                               mx-1
+                              disabled
                               @(_calculatorSubmitModel.Action == CalculateAction.Multiplication
                                     ? "checked"
                                     : string.Empty)"
@@ -79,10 +91,12 @@
                        name="operation"
                        id="/"
                        value="@CalculateAction.Division"
+                       disabled
                 @onchange="OnCalcActionSelect" />
                 <label class="btn
                               sized
                               mx-1
+                              disabled
                               @(_calculatorSubmitModel.Action == CalculateAction.Division
                                     ? "checked"
                                     : string.Empty)"
@@ -95,6 +109,11 @@
                     </svg>
                 </label>
             </div>
+            <button class="btn mt-4 btn--toggle--form"
+                    type="button"
+            @onclick="() => { SwapArguments(); }">
+                Swap arguments
+            </button>
         </div>
 
         <div class="col p-2 flex--3">
@@ -108,16 +127,16 @@
             @oninput="OnSecondOpInput" />
         </div>
     </form>
-
-    @if (HasEverPosted())
-    {
-        <button @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">To visual</button>
-    }
 }
 else
 {
-    <button @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">To input</button>
-    <OperationInColumns FirstOp="@_calculatorSubmitModel.FirstOp"
-                        SecondOp="@_calculatorSubmitModel.SecondOp"
-                        CalcAction="@_calculatorSubmitModel.Action" />
+    <div class="row" style="align-content: space-around; justify-content: center;">
+        <button class="btn mt-2 mb-2 btn--toggle--form"
+        @onclick="() => { _calculatorSubmitModel.ToggleHasPosted(); }">
+            Back to input
+        </button>
+        <OperationInColumns FirstOp="@_calculatorSubmitModel.FirstOp"
+                            SecondOp="@_calculatorSubmitModel.SecondOp"
+                            CalcAction="@_calculatorSubmitModel.Action" />
+    </div>
 }
