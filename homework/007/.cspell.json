@@ -1,0 +1,12 @@
+{
+    "version": "0.2",
+    "language": "en_US",
+    "dictionaryDefinitions": [
+        {
+            "name": "customWords",
+            "path": "./.words.txt"
+        }
+    ],
+    "dictionaries": ["companies", "css", "customWords", "html", "misc", "node", "npm", "softwareTerms", "typescript"],
+    "ignorePaths": ["*.yarn", "*.md", "node_modules", "package.json", "pnpm-lock.yaml", "public", "src/assets"]
+}
