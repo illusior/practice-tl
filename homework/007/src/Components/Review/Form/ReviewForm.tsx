@@ -1,83 +1,44 @@
 import { useState } from "react";
-import { ReviewProperty } from "../Property/ReviewProperty"
-import {
-    ReviewPropertyType,
-    PropertyRateType,
-    PropertyRateValueT,
-    OptPropertyRateValueT
-} from "../Types/ReviewProperty"
-import "./ReviewForm.css"
+import { CreateReviewOptionInputs } from "../Option/ReviewOption";
+import ReviewOptionT, { CreateReviewOptions, ReviewOptionRateValueT } from "../Types/ReviewOptionT";
+import "./ReviewForm.css";
+import Grade from "../../Text/Grade";
 
 interface ReviewFormProps {
     mainTitle: string;
-    reviewStatementTitles: Array<string>;
-    minStatementValue: PropertyRateValueT;
-    maxStatementValue: PropertyRateValueT;
+    reviewOptionTitles: string[];
+    minROptionValue: ReviewOptionRateValueT;
+    maxROptionValue: ReviewOptionRateValueT;
 }
 
-function ReviewForm({ mainTitle,
-    reviewStatementTitles,
-    minStatementValue,
-    maxStatementValue }: ReviewFormProps): JSX.Element {
+function ReviewForm({ mainTitle, reviewOptionTitles, minROptionValue, maxROptionValue }: ReviewFormProps): JSX.Element {
+    const [rateStatesSum, setRateStatesSum] = useState<ReviewOptionRateValueT>(0.0);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [rateStates, setRateStates] = useState(reviewStatementTitles.map<OptPropertyRateValueT>(_ => undefined))
+    const reviewOptionInfos: ReviewOptionT[] = CreateReviewOptions(
+        reviewOptionTitles,
+        minROptionValue,
+        maxROptionValue,
+    );
 
-    const reviewStatements: Array<ReviewPropertyType> = reviewStatementTitles
-        .map((title: string, index: number) => {
-            const propertyRateMin: PropertyRateValueT = minStatementValue
-            const propertyRateMax: PropertyRateValueT = maxStatementValue
-            const rateValue: OptPropertyRateValueT = rateStates[index]
-
-            return {
-                title: title,
-                rateRange: new PropertyRateType(
-                    propertyRateMin,
-                    propertyRateMax,
-                    rateValue,
-                )
-            }
-    })
-
-    const reviewPropertiesSum: OptPropertyRateValueT = rateStates
-        .reduce((accumulate: OptPropertyRateValueT, currValue: OptPropertyRateValueT) => {
-        return (accumulate && currValue) ? accumulate + currValue : accumulate
-    })
-
-    const reviewPropertiesCount: number = reviewStatements.length
-    const averageSum: number = (reviewPropertiesSum ?? 0) / reviewPropertiesCount
+    const reviewPropertiesCount: number = reviewOptionInfos.length;
 
     return (
         <>
             <form className="container review-form">
-                <h1 className="review-form__title">
-                    {mainTitle}
-                </h1>
+                <h1 className="review-form-title">{mainTitle}</h1>
 
-                {reviewStatements.map((rPropState: ReviewPropertyType) => {
-                    return <ReviewProperty key={rPropState.title}
-                        reviewPropertyState={rPropState}
-                        onPropertyRateChange={(pTitle: string, newRate: PropertyRateValueT) => {
-                            setRateStates(reviewStatements
-                                .map<OptPropertyRateValueT>((reviewProperty: ReviewPropertyType) => {
-                                    return (pTitle === reviewProperty.title)
-                                        ? newRate
-                                        : reviewProperty.rateRange.value
-                            }))
-                    }} />
-                })}
+                {CreateReviewOptionInputs(reviewOptionInfos, rateStatesSum, setRateStatesSum)}
 
-                <h1>{averageSum}/{reviewPropertiesCount}</h1>
+                <Grade average={(rateStatesSum ?? 0) / reviewPropertiesCount} total={reviewPropertiesCount} />
 
-                <textarea className="review-form__text-input"
-                          placeholder="What could we improve?">
-                </textarea>
+                <textarea className="review-form-text-input" placeholder="What could we improve?"></textarea>
 
-                <button className="review-form__submit-button"
-                        type="button">Send</button>
+                <button className="review-form-submit-button" type="button">
+                    Send
+                </button>
             </form>
         </>
-    )
+    );
 }
 
-export default ReviewForm
+export default ReviewForm;

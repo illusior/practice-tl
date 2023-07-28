@@ -4,17 +4,17 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "vite",
         "build": "tsc && vite build",
-        "stylefix": "run-s *:fix",
-        "lint": "run-s lint:*",
+        "dev": "vite",
+        "fixcodestyle:prettier": "prettier --write .",
+        "fixcodestyle:stylelint": "stylelint --fix src/**/*.css",
+        "fixcodestyle": "run-s fixcodestyle:*",
         "lint:cspell": "cspell --no-progress --no-summary .",
         "lint:eslint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "lint:prettier": "prettier --check --log-level warn .",
         "lint:stylelint": "stylelint --max-warnings=0 src/**/*.css",
-        "prettier:fix": "prettier --write .",
-        "preview": "vite preview",
-        "stylelint:fix": "stylelint --fix src/**/*.css"
+        "lint": "run-s lint:*",
+        "preview": "vite preview"
     },
     "dependencies": {
         "react": "^18.2.0",
