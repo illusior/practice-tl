@@ -1,31 +1,32 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import ReviewForm from "./Components/Review/Form/ReviewForm";
+import ReviewSummary from "./Components/Review/Summary/ReviewSummary";
 
-function App() {
-    const [count, setCount] = useState(0);
+const MIN_RATE_VALUE: number = 0
+const MAX_RATE_VALUE: number = 5
+
+function App(): JSX.Element {
+    const reviewStatements: Array<string> = [
+        "Cleanliness",
+        "Customer Service",
+        "Speed",
+        "Location",
+        "Facilities",
+    ];
 
     return (
-        <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
+        <div className="container reviewer">
+            <div className="container review-form">
+                <ReviewForm mainTitle="How nice was my reply?"
+                            reviewStatementTitles={reviewStatements}
+                            minStatementValue={MIN_RATE_VALUE}
+                            maxStatementValue={MAX_RATE_VALUE}/>
             </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
+            <div className="container review-summary">
+                <ReviewSummary />
             </div>
-            <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-        </>
-    );
+        </div>
+    )
 }
 
-export default App;
+export default App
