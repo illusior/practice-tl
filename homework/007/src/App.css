@@ -24,7 +24,7 @@
 .review-summaries {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
+    align-items: flex-start;
     max-height: 30vh;
     overflow-x: hidden;
     overflow-y: scroll;

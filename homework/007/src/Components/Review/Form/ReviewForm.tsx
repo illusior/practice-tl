@@ -1,5 +1,5 @@
 import "./ReviewForm.css";
-import { CreateReviewOptionInputs } from "../Option/ReviewOption";
+import { CreateMemoReviewOptionInputs } from "../Option/ReviewOption";
 import { RandomNicknameGenerator, DATA_SETS } from "random-nickname-generator";
 import { useRef, useState } from "react";
 import Grade from "../../Text/Grade";
@@ -46,7 +46,7 @@ function ReviewForm({ mainTitle, reviewOptionInfos, onReviewSubmit }: ReviewForm
                 </div>
                 <div className="review-form-edit">
                     <div className="review-form-options">
-                        {CreateReviewOptionInputs(reviewOptionInfos, setRateStatesSum)}
+                        {CreateMemoReviewOptionInputs(reviewOptionInfos, setRateStatesSum)}
                     </div>
 
                     <textarea

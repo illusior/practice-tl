@@ -1,5 +1,5 @@
 import "./ReviewOption.css";
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, memo, useCallback, useState } from "react";
 import ReviewOptionT, { OptReviewOptionRateValueT, ReviewOptionRateValueT } from "../Types/ReviewOptionT";
 
 export type OnOptionRateInputCallbackT = (
@@ -49,7 +49,9 @@ export function ReviewOption({ reviewOptionInfo, onOptionRateInput }: ReviewOpti
     );
 }
 
-export const CreateReviewOptionInputs = (
+export const MemoReviewOption = memo(ReviewOption);
+
+export const CreateMemoReviewOptionInputs = (
     reviewOptions: ReviewOptionT[],
     setOptionRateStates: React.Dispatch<React.SetStateAction<ReviewOptionRateValueT>>,
 ): JSX.Element[] => {
@@ -62,7 +64,7 @@ export const CreateReviewOptionInputs = (
 
     return reviewOptions.map((rOption: ReviewOptionT) => {
         return (
-            <ReviewOption
+            <MemoReviewOption
                 key={`${rOption.title}`}
                 reviewOptionInfo={rOption}
                 onOptionRateInput={onOptionRateInputCallback}
