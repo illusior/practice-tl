@@ -1,6 +1,8 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using Shapes.Shapes.Exceptions;
+
 namespace shapes.test
 {
     public class CircleTests
