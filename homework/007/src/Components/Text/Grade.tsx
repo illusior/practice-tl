@@ -1,12 +1,13 @@
-type GradeProps = {
-    average: number;
+interface GradeProps {
+    className: string;
+    gradeSum: number;
     total: number;
-};
+}
 
-function Grade({ average, total }: GradeProps): JSX.Element {
+function Grade({ className, gradeSum, total }: GradeProps): JSX.Element {
     return (
-        <div className="grade">
-            {average}/{total}
+        <div className={className}>
+            {gradeSum / total}/{total}
         </div>
     );
 }

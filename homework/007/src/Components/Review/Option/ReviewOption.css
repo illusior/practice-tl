@@ -1,5 +1,16 @@
-.review-property {
+/* stylelint-disable property-no-vendor-prefix */
+.review-option {
     flex-direction: row;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    align-self: flex-start;
+    margin-bottom: 38px;
+}
+
+.review-option-label {
+    margin-left: 18px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.review-option-input {
+    min-width: 209px;
 }

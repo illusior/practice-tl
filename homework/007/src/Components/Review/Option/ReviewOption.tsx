@@ -1,43 +1,44 @@
-import { FormEvent, useState } from "react";
-import ReviewOptionT, { OptReviewOptionRateValueT, ReviewOptionRateValueT } from "../Types/ReviewOptionT";
 import "./ReviewOption.css";
+import { FormEvent, useCallback, useState } from "react";
+import ReviewOptionT, { OptReviewOptionRateValueT, ReviewOptionRateValueT } from "../Types/ReviewOptionT";
 
 export type OnOptionRateInputCallbackT = (
-    propertyTitle: string,
     oldReviewRate: OptReviewOptionRateValueT,
     newReviewRate: ReviewOptionRateValueT,
 ) => void;
 
-interface ReviewPropertyProps {
-    reviewPropertyInfo: ReviewOptionT;
+interface ReviewOptionProps {
+    reviewOptionInfo: ReviewOptionT;
     onOptionRateInput: OnOptionRateInputCallbackT;
 }
 
-export function ReviewOption({ reviewPropertyInfo, onOptionRateInput }: ReviewPropertyProps): JSX.Element {
-    const rpTitle: string = reviewPropertyInfo.title;
-    const rpRateRange: ReviewOptionT["rateRange"] = reviewPropertyInfo.rateRange;
+export function ReviewOption({ reviewOptionInfo, onOptionRateInput }: ReviewOptionProps): JSX.Element {
+    const rpTitle: string = reviewOptionInfo.title;
+    const rpRateRange: ReviewOptionT["rateRange"] = reviewOptionInfo.rateRange;
     const [rpMinValue, rpMaxValue] = [rpRateRange.min, rpRateRange.max];
 
     const [rateValue, setRateValue] = useState<OptReviewOptionRateValueT>(undefined);
-    const onRateInput = (e: FormEvent) => {
+    const onRateInput = useCallback((e: FormEvent) => {
         const newRate: ReviewOptionRateValueT = Number((e.target as HTMLInputElement).value);
+        onOptionRateInput(rateValue, newRate);
         setRateValue(newRate);
-        onOptionRateInput(rpTitle, rateValue, newRate);
-    };
+    }, [rateValue]);
+
+    const filteredId: string = rpTitle.toLowerCase().replace(' ', '-')
 
     return (
-        <div className="container review-property">
-            <input
-                className="review-property-input"
-                id={rpTitle}
+        <div className="review-option">
+            <input className="review-option-input"
+                id={filteredId}
+                list={`${filteredId}-list`}
                 max={rpMaxValue}
                 min={rpMinValue}
-                name={rpTitle}
+                name={filteredId}
                 onInput={onRateInput}
                 type="range"
                 value={rateValue ?? 0}
             />
-            <label className="review-property_label" htmlFor={rpTitle}>
+            <label className="review-option-label" htmlFor={filteredId}>
                 {rpTitle}
             </label>
         </div>
@@ -46,23 +47,21 @@ export function ReviewOption({ reviewPropertyInfo, onOptionRateInput }: ReviewPr
 
 export const CreateReviewOptionInputs = (
     reviewOptions: ReviewOptionT[],
-    optionRatesSum: ReviewOptionRateValueT,
     setOptionRateStates: React.Dispatch<React.SetStateAction<ReviewOptionRateValueT>>,
 ): JSX.Element[] => {
+    const onOptionRateInputCallback = useCallback(
+        (oldReviewRate: OptReviewOptionRateValueT, newOptionRate: ReviewOptionRateValueT) => {
+            setOptionRateStates(prevRatesSum => prevRatesSum - (oldReviewRate ?? 0) + newOptionRate);
+        },
+        [setOptionRateStates],
+    );
+
     return reviewOptions.map((rOption: ReviewOptionT) => {
         return (
             <ReviewOption
                 key={`${rOption.title}`}
-                reviewPropertyInfo={rOption}
-                onOptionRateInput={(
-                    changedOptionTitle: string,
-                    oldReviewRate: OptReviewOptionRateValueT,
-                    newOptionRate: ReviewOptionRateValueT,
-                ) => {
-                    if (changedOptionTitle === rOption.title) {
-                        setOptionRateStates(optionRatesSum - (oldReviewRate ?? 0) + newOptionRate);
-                    }
-                }}
+                reviewOptionInfo={rOption}
+                onOptionRateInput={onOptionRateInputCallback}
             />
         );
     });

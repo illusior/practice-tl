@@ -5,22 +5,27 @@
     text-align: center;
 }
 
-.container {
+.reviewer {
     display: flex;
     flex-direction: column;
-}
-
-.reviewer {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 2rem;
 }
 
-.review-form {
-    background-color: var(--color-fill-main);
+.review-form-hr-reviews {
+    min-width: 80%;
+    max-width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--color-border-main);
 }
 
-.review-summary {
-    background-color: var(--color-text-main);
+.review-summaries {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    max-height: 30vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
