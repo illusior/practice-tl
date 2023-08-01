@@ -18,17 +18,21 @@ export function ReviewOption({ reviewOptionInfo, onOptionRateInput }: ReviewOpti
     const [rpMinValue, rpMaxValue] = [rpRateRange.min, rpRateRange.max];
 
     const [rateValue, setRateValue] = useState<OptReviewOptionRateValueT>(undefined);
-    const onRateInput = useCallback((e: FormEvent) => {
-        const newRate: ReviewOptionRateValueT = Number((e.target as HTMLInputElement).value);
-        onOptionRateInput(rateValue, newRate);
-        setRateValue(newRate);
-    }, [rateValue]);
+    const onRateInput = useCallback(
+        (e: FormEvent) => {
+            const newRate: ReviewOptionRateValueT = Number((e.target as HTMLInputElement).value);
+            onOptionRateInput(rateValue, newRate);
+            setRateValue(newRate);
+        },
+        [rateValue],
+    );
 
-    const filteredId: string = rpTitle.toLowerCase().replace(' ', '-')
+    const filteredId: string = rpTitle.toLowerCase().replace(" ", "-");
 
     return (
         <div className="review-option">
-            <input className="review-option-input"
+            <input
+                className="review-option-input"
                 id={filteredId}
                 list={`${filteredId}-list`}
                 max={rpMaxValue}

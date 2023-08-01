@@ -33,7 +33,7 @@ function App(): JSX.Element {
                 />
             </div>
 
-            {(reviewSummaries.length > 0) && <hr className="review-form-hr-reviews" />}
+            {reviewSummaries.length > 0 && <hr className="review-form-hr-reviews" />}
 
             <div className="review-summaries">{CreateReviewSummaries(reviewSummaries)}</div>
         </div>

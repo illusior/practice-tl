@@ -1,6 +1,6 @@
 import "./ReviewForm.css";
 import { CreateReviewOptionInputs } from "../Option/ReviewOption";
-import { RandomNicknameGenerator, DATA_SETS } from 'random-nickname-generator';
+import { RandomNicknameGenerator, DATA_SETS } from "random-nickname-generator";
 import { useRef, useState } from "react";
 import Grade from "../../Text/Grade";
 import ReviewOptionT, { ReviewOptionRateValueT } from "../Types/ReviewOptionT";
@@ -16,12 +16,9 @@ interface ReviewFormProps {
 }
 
 const randomNicknameGenConfig = {
-    structure: [
-        DATA_SETS.ANIMALS,
-        DATA_SETS.ADJECTIVES,
-      ],
-      separator: ' ',
-}
+    structure: [DATA_SETS.ANIMALS, DATA_SETS.ADJECTIVES],
+    separator: " ",
+};
 
 function ReviewForm({ mainTitle, reviewOptionInfos, onReviewSubmit }: ReviewFormProps): JSX.Element {
     const reviewTextRef = useRef<HTMLTextAreaElement>(null);
@@ -52,7 +49,11 @@ function ReviewForm({ mainTitle, reviewOptionInfos, onReviewSubmit }: ReviewForm
                         {CreateReviewOptionInputs(reviewOptionInfos, setRateStatesSum)}
                     </div>
 
-                    <textarea className="review-form-text-input" placeholder="What could we improve?" ref={reviewTextRef} />
+                    <textarea
+                        className="review-form-text-input"
+                        placeholder="What could we improve?"
+                        ref={reviewTextRef}
+                    />
 
                     <button className="review-form-submit-button" type="submit" onClick={onSubmitCallback}>
                         Send
