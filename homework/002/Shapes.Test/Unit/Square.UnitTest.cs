@@ -5,14 +5,14 @@ namespace shapes.test
 {
     internal class SqaureTests
     {
-        private readonly Point _pLeftTop = new(0, 10);
+        private readonly Point _leftTop = new(0, 10);
         private readonly double _size = 110;
         private Square _square;
 
         [SetUp]
         public void Setup()
         {
-            _square = new Square(_pLeftTop, _size);
+            _square = new Square(_leftTop, _size);
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace shapes.test
         {
             Assert.Throws<InvalidSquareException>(() => {
                 double invalidSize = -200;
-                new Square(_pLeftTop, invalidSize);
+                new Square(_leftTop, invalidSize);
             }, "Square must have positive size");
         }
 

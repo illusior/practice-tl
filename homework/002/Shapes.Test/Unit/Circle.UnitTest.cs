@@ -5,14 +5,14 @@ namespace shapes.test
 {
     public class CircleTests
     {
-        private readonly Point _pCenter = new(0, 10);
+        private readonly Point _center = new(0, 10);
         private readonly double _radius = 1234;
         private Circle _circle;
 
         [SetUp]
         public void Setup()
         {
-            _circle = new Circle(_pCenter, _radius);
+            _circle = new Circle(_center, _radius);
         }
 
         [TestCase(-100)]

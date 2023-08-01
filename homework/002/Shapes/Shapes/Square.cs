@@ -5,7 +5,7 @@ namespace shapes.Shapes
 {
     public class Square : IShape
     {
-        private Point _pTopLeft, _pRightBottom;
+        private Point _topLeft, _rightBottom;
 
         public Square(Point topLeft, double size)
         {
@@ -14,8 +14,8 @@ namespace shapes.Shapes
                 throw new InvalidSquareException();
             }
 
-            _pTopLeft = topLeft;
-            _pRightBottom = new Point(_pTopLeft.X + size, _pTopLeft.Y + size);
+            _topLeft = topLeft;
+            _rightBottom = new Point(_topLeft.X + size, _topLeft.Y + size);
         }
 
         public double CalculateArea()
@@ -30,7 +30,7 @@ namespace shapes.Shapes
 
         private double GetSize()
         {
-            return _pRightBottom.X - _pTopLeft.X;
+            return _rightBottom.X - _topLeft.X;
         }
     }
 }
