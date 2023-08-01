@@ -18,12 +18,12 @@ namespace shapes.Shapes
             _radius = radius;
         }
 
-        public double CalculateArea()
+        public double GetArea()
         {
             return Math.PI * Math.Pow(_radius, 2);
         }
 
-        public double CalculatePerimeter()
+        public double GetPerimeter()
         {
             return 2 * Math.PI * _radius;
         }

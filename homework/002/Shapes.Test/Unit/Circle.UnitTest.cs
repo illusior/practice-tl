@@ -36,7 +36,7 @@ namespace shapes.test
         {
             double expectedArea = 4783879.062;
 
-            var actualArea = _circle.CalculateArea();
+            var actualArea = _circle.GetArea();
 
             Assert.That(actualArea,
                 Is.EqualTo(expectedArea).Within(Settings.s_TestAccuracy).Percent,
@@ -48,7 +48,7 @@ namespace shapes.test
         {
             double expectedPerimeter = 7753.450;
 
-            var actualPerimeter = _circle.CalculatePerimeter();
+            var actualPerimeter = _circle.GetPerimeter();
 
             Assert.That(actualPerimeter,
                 Is.EqualTo(expectedPerimeter).Within(Settings.s_TestAccuracy).Percent,

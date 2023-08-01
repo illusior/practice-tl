@@ -36,10 +36,10 @@ namespace shapes.Shapes
             _p2 = p2;
             _p3 = p3;
 
-            _triangleInfo = CalculateTriangleInfo();
+            _triangleInfo = GetTriangleInfo();
         }
 
-        public double CalculateArea()
+        public double GetArea()
         {
             double p_2 = _triangleInfo.Perimeter / 2;
             var a = _triangleInfo.Distance1;
@@ -49,12 +49,12 @@ namespace shapes.Shapes
             return Math.Sqrt(p_2 * (p_2 - a) * (p_2 - b) * (p_2 - c));
         }
 
-        public double CalculatePerimeter()
+        public double GetPerimeter()
         {
             return _triangleInfo.Perimeter;
         }
 
-        private TriangleDimensionsAndPerimeter CalculateTriangleInfo()
+        private TriangleDimensionsAndPerimeter GetTriangleInfo()
         {
             double a = _p1.Distance(_p2);
             double b = _p2.Distance(_p3);

@@ -17,12 +17,12 @@ namespace shapes.Shapes
             _rightBottom = new Point(_topLeft.X + size, _topLeft.Y + size);
         }
 
-        public double CalculateArea()
+        public double GetArea()
         {
             return Math.Pow(GetSize(), 2);
         }
 
-        public double CalculatePerimeter()
+        public double GetPerimeter()
         {
             return GetSize() * 4;
         }

@@ -16,7 +16,7 @@ List<IShape> shapes = new List<IShape>()
 
 foreach (var item in shapes)
 {
-    Console.WriteLine($"{item.ToString()!.Split('.').Last()}'s area: {item.CalculateArea()}");
-    Console.WriteLine($"{item.ToString()!.Split('.').Last()}'s perimeter: {item.CalculatePerimeter()}");
+    Console.WriteLine($"{item.ToString()!.Split('.').Last()}'s area: {item.GetArea()}");
+    Console.WriteLine($"{item.ToString()!.Split('.').Last()}'s perimeter: {item.GetPerimeter()}");
     Console.WriteLine();
 }

@@ -31,7 +31,7 @@ namespace shapes.test
         {
             double expectedArea = 12100;
 
-            var actualArea = _square.CalculateArea();
+            var actualArea = _square.GetArea();
 
             Assert.That(actualArea,
                 Is.EqualTo(expectedArea).Within(Settings.s_TestAccuracy).Percent,
@@ -43,7 +43,7 @@ namespace shapes.test
         {
             double expectedPerimeter = 440;
 
-            var actualPerimeter = _square.CalculatePerimeter();
+            var actualPerimeter = _square.GetPerimeter();
 
             Assert.That(actualPerimeter,
                 Is.EqualTo(expectedPerimeter).Within(Settings.s_TestAccuracy).Percent,

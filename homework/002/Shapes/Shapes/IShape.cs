@@ -5,7 +5,7 @@ namespace shapes.Shapes
 {
     public interface IShape
     {
-        public double CalculateArea();
-        public double CalculatePerimeter();
+        public double GetArea();
+        public double GetPerimeter();
     }
 }
